@@ -19,7 +19,7 @@ jobs:
           python-version: '3.13'
 
       - name: Ejecutar Hello World
-        run: python main.py
+        run: python Hello-world/main.py
 
       - name: Enviar notificacion
         run: |
