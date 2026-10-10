@@ -1,0 +1,29 @@
+name: Notificacion Hello World Python
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notificar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Ejecutar Hello World
+        run: python main.py
+
+      - name: Enviar notificacion a ntfy
+        run: |
+          curl -H "Title: GitHub Actions" \
+               -H "Priority: 4" \
+               -d "Se ha subido codigo Python a la rama main. Repositorio: ${{ github.repository }}" \
+               https://ntfy.sh/devops-itla
